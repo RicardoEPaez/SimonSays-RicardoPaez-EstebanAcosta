@@ -1,6 +1,7 @@
 *, *::before, *::after{
     box-sizing: border-box;
-    font-family: Arial
+    font-family: Arial;
+    font-weight: bold;
 }
 
 
@@ -11,13 +12,74 @@ body {
 
 .container {
     position: absolute;
-    background-color: rgba(255, 255, 255);
     height: 100%;
-    width: auto;
+    width: 100%;
 }
 
 .simon_container {
+    position: absolute;
     background-color: #000000;
-    height: 30%
-    
+    height: 25em;
+    width: 25em;
+    transform: translate(50%, -50%);
+    top: 50%;
+    right: 50%;
+    border-radius: 50%;
+}
+
+.simon {
+    position: absolute;
+    height: 11em;
+    width: 11em;
+}
+
+.verde {
+    background-color: #4ab447;
+    border-radius: 0 0 100% 0;
+    bottom: 1em;
+    right: 1em;
+}
+
+.rojo {
+    background-color: #d93131;
+    border-radius: 0 0 0 100%;
+    bottom: 1em;
+    left: 1em;
+}
+
+.azul {
+    background-color: #2a3fee;
+    border-radius: 0 100% 0 0;
+    top: 1em;
+    right: 1em;
+}
+
+.amarillo {
+    background-color: #f9f02e;
+    border-radius: 100% 0 0 0;
+    top: 1em;
+    left: 1em;
+}
+
+.simon_container:before {
+    position: absolute;
+    background-color: #000000;
+    content: "";
+    height: 12em;
+    width: 12em;
+    z-index: 1;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 50%;
+}
+
+#count {
+    position: absolute;
+    transform: translate(50%, -50%);
+    top: 50%;
+    right: 50%;
+    font-size: 2.6em;
+    z-index: 1;
+    color: #ffffff;
 }
