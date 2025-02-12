@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const retryBtn = document.getElementById('retry-btn');
     const gameOverSection = document.getElementById('game-over');
 
+    const startAudio = new Audio("Start.wav");
+
     // --- "Jugar" Button Logic (from Main Menu) ---
     playerForm.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission (page reload)
@@ -16,10 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Show the Game Section
         gameSection.classList.remove('hidden');
 
-        // 3. Start the Game Logic (Call your game initialization function)
+        //3. Play start sound
+        startAudio.play();
+
+        // 4. Start the Game Logic (Call your game initialization function)
         startGame();
 
-        // 4. Get and display player name (optional)
+        // 5. Get and display player name (optional)
         const playerNameInput = document.getElementById('player-name');
         const playerName = playerNameInput.value.trim();
         document.getElementById('current-player').textContent = playerName || 'Anónimo'; // Use player name or 'Anónimo' if empty
