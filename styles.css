@@ -4,26 +4,108 @@
     font-weight: bold;
 }
 
-
 body {
     margin: 0;
     background: linear-gradient(to right, #1a1a1a, #373737);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh; 
 }
 
-.container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+.container {     
+    flex-direction: column; 
+    align-items: center;    
+    padding: 70px;        
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;    
 }
+
+#main-menu {
+    text-align: center; 
+    color: #fff;       
+    margin-bottom: 20px; 
+}
+
+#main-menu h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+#player-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+    margin-bottom: 20px;
+}
+
+#player-form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: #333;
+    font-size: 1em;
+}
+
+#player-form input[type="text"]::placeholder {
+    color: #777; 
+}
+
+#player-form button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; 
+    color: #fff;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#player-form button[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+.scores {
+    background-color: rgba(255, 255, 255, 0.15); 
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 300px;
+}
+
+.scores h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+#highscores {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+}
+
+#highscores th, #highscores td {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px;
+    text-align: left;
+}
+
+#highscores th {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
 
 .simon_container {
-    position: absolute;
+    position: relative;
     background-color: #000000;
     height: 25em;
     width: 25em;
-    transform: translate(50%, -50%);
-    top: 50%;
-    right: 50%;
     border-radius: 50%;
 }
 
@@ -33,28 +115,32 @@ body {
     width: 11em;
 }
 
-.verde {
+.simon:hover, .simon.active {
+    opacity: 1;     
+}
+
+#green {
     background-color: #4ab447;
     border-radius: 0 0 100% 0;
     bottom: 1em;
     right: 1em;
 }
 
-.rojo {
+#red{
     background-color: #d93131;
     border-radius: 0 0 0 100%;
     bottom: 1em;
     left: 1em;
 }
 
-.azul {
+#blue {
     background-color: #2a3fee;
     border-radius: 0 100% 0 0;
     top: 1em;
     right: 1em;
 }
 
-.amarillo {
+#yellow {
     background-color: #f9f02e;
     border-radius: 100% 0 0 0;
     top: 1em;
@@ -82,4 +168,103 @@ body {
     font-size: 2.6em;
     z-index: 1;
     color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: #fff;
+}
+
+.player-info p {
+    margin: 5px 0;
+    font-size: 1.2em;
+}
+
+.game-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.game-controls button:hover {
+    background-color: #777; 
+}
+
+
+
+#game-over {
+    text-align: center;
+    color: #fff;
+    background-color: rgba(220, 53, 69, 0.8); 
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#game-over h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+#game-over p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#game-over button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+@media (max-width: 600px) {
+    #main-menu h1 {
+        font-size: 2.5em;
+    }
+    #player-form input[type="text"],
+    #player-form button[type="submit"],
+    .scores h2,
+    .game-controls button,
+    #game-over h2,
+    #game-over p,
+    #game-over button {
+        font-size: 0.9em;
+    }
+    .simon_container {
+        height: 20em;
+        width: 20em;
+    }
+    .simon {
+        height: 9em;
+        width: 9em;
+    }
+    #count {
+        font-size: 2em;
+    }
+}
+
+
+.simon-logo { 
+    display: block; 
+    max-width: 150px; 
+    height: auto;    
+    margin: 0 auto 20px auto; 
+    border-radius: 50%; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);    
 }
