@@ -16,6 +16,7 @@ const greenAudio = new Audio("Green.wav");
 const redAudio = new Audio("Red.wav");
 const yellowAudio = new Audio("Yellow.wav");
 const loseAudio = new Audio("Lose.wav");
+const startAudio = new Audio("Start.wav");
 
 //Game lists and variables declarations
 let colorsSequence = [];
@@ -33,7 +34,7 @@ function playYellow() {
     Byellow.style.backgroundColor = "#faffb1";
     setTimeout(() => {
         Byellow.style.backgroundColor = "";
-    }, 500);
+    }, 600);
 }
 
 function playRed() {
@@ -41,7 +42,7 @@ function playRed() {
     Bred.style.backgroundColor = "#ff7b7b";
     setTimeout(() => {
         Bred.style.backgroundColor = "";
-    }, 500);
+    }, 600);
 }
 
 function playGreen() {
@@ -49,7 +50,7 @@ function playGreen() {
     Bgreen.style.backgroundColor = "#8dfe84";
     setTimeout(() => {
         Bgreen.style.backgroundColor = "";
-    }, 500);
+    }, 600);
 }
 
 function playBlue() {
@@ -57,7 +58,7 @@ function playBlue() {
     Bblue.style.backgroundColor = "#8ea2fc";
     setTimeout(() => {
         Bblue.style.backgroundColor = "";
-    }, 500);
+    }, 600);
 }
 
 // Color buttons pressed functions
@@ -89,6 +90,21 @@ if (Bgreen) {
     });
 }
 
+//Buttons enabled functions
+function Benable() {
+    Byellow.style.pointerEvents = 'all';
+    Bred.style.pointerEvents = 'all';
+    Bblue.style.pointerEvents = 'all';
+    Bgreen.style.pointerEvents = 'all';
+}
+
+function Bdisable() {
+    Byellow.style.pointerEvents = 'none';
+    Bred.style.pointerEvents = 'none';
+    Bblue.style.pointerEvents = 'none';
+    Bgreen.style.pointerEvents = 'none';
+}
+
 //logical functions
 function addColor() {
     let nextColor;
@@ -101,9 +117,9 @@ function addColor() {
 
 function isColor(answer) {
     if (answer != colorsSequence[index]) {
+        showGameOver();
         Score = 0;
         ScoreCount.textContent = "0";
-        showGameOver();
     } else {
         index += 1;
         if (index === colorsSequence.length) {
@@ -117,6 +133,7 @@ function isColor(answer) {
 
 function playSequence() {
     let i = 0;
+    Bdisable();
     const interval = setInterval(() => {
         if (i >= colorsSequence.length) {
             clearInterval(interval);
@@ -139,6 +156,7 @@ function playSequence() {
         }
         i++;
     }, 1000);
+    Benable();
 }
 
 function startGame() {
@@ -162,8 +180,9 @@ function showGameOver() {
     const gameOverScreen = document.getElementById("game-over");
     const finalScore = document.getElementById("final-score");
     const gameSection = document.getElementById("game-section");
+    loseAudio.play();
     if (gameOverScreen && finalScore && gameSection) {
-        finalScore.textContent = Score;
+        finalScore.textContent = `${Score}`;
         gameOverScreen.classList.remove("hidden");
         gameSection.classList.add("hidden");
     }
