@@ -8,115 +8,192 @@ const Bred = document.getElementById("red");
 const Bblue = document.getElementById("blue");
 const Bgreen = document.getElementById("green");
 
-const Bcolors = document.querySelectorAll("simon");
+const Bcolors = document.querySelectorAll(".simon");
 
 //reference to audio files
 const blueAudio = new Audio("Blue.wav");
 const greenAudio = new Audio("Green.wav");
-const redAudio = new Audio("Red.wav")
+const redAudio = new Audio("Red.wav");
 const yellowAudio = new Audio("Yellow.wav");
 const loseAudio = new Audio("Lose.wav");
 
 //Game lists and variables declarations
-let colorsSecuence = [];
+let colorsSequence = [];
 let colorOptions = [1, 2, 3, 4];
 let index = 0;
-let answer = 0;
+let userSequence = [];
+let round = 0;
 
 // random function
-const rand = Math.floor(Math.random() * colorOptions.lenght);
+const rand = () => Math.floor(Math.random() * colorOptions.length);
 
-// Color buttons secuence demostration functions
-function playYellow(){
+// Color buttons sequence demonstration functions
+function playYellow() {
     yellowAudio.play();
     Byellow.style.backgroundColor = "#faffb1";
-    setTimeout(Byellow.style.backgroundColor = "#faffb1", 1000);
+    setTimeout(() => {
+        Byellow.style.backgroundColor = "";
+    }, 500);
 }
 
 function playRed() {
-    yellowAudio.play();
+    redAudio.play();
     Bred.style.backgroundColor = "#ff7b7b";
-    setTimeout(1000);
+    setTimeout(() => {
+        Bred.style.backgroundColor = "";
+    }, 500);
 }
 
 function playGreen() {
-    yellowAudio.play();
+    greenAudio.play();
     Bgreen.style.backgroundColor = "#8dfe84";
-    setTimeout(1000);
+    setTimeout(() => {
+        Bgreen.style.backgroundColor = "";
+    }, 500);
 }
 
 function playBlue() {
-    yellowAudio.play();
+    blueAudio.play();
     Bblue.style.backgroundColor = "#8ea2fc";
-    setTimeout(1000);
+    setTimeout(() => {
+        Bblue.style.backgroundColor = "";
+    }, 500);
 }
 
 // Color buttons pressed functions
- if (Byellow) {
+if (Byellow) {
     Byellow.addEventListener("click", () => {
         yellowAudio.play();
-        isColor(1);
-    })
- }
+        isColor(4);
+    });
+}
 
- if (Bred) {
+if (Bred) {
     Bred.addEventListener("click", () => {
         redAudio.play();
-        isColor(2);
-    })
- }
+        isColor(1);
+    });
+}
 
- if (Bblue) {
+if (Bblue) {
     Bblue.addEventListener("click", () => {
         blueAudio.play();
         isColor(3);
-    })
- }
+    });
+}
 
- if (Bgreen) {
+if (Bgreen) {
     Bgreen.addEventListener("click", () => {
         greenAudio.play();
-        isColor(4);
-    })
- }
+        isColor(2);
+    });
+}
 
- //logical functions
- function addColor() {
-    colorsSecuence.push(colorOptions[rand]);
-    playSecuence();
- }
+//logical functions
+function addColor() {
+    let nextColor;
+    do {
+        nextColor = colorOptions[rand()];
+    } while (colorsSequence.length > 0 && nextColor === colorsSequence[colorsSequence.length - 1]);
+    colorsSequence.push(nextColor);
+    playSequence();
+}
 
- function isColor(answer){
-    if (answer != colorSecuence[index]) {
-        Score = X;
+function isColor(answer) {
+    if (answer != colorsSequence[index]) {
+        Score = 0;
         ScoreCount.textContent = "0";
-        //falta pantalla de perdida
+        showGameOver();
     } else {
-        Score += 1;
-        ScoreCount.textContent = `{Score}`;
         index += 1;
-        if (index = colorSecuence.leght) {
+        if (index === colorsSequence.length) {
+            Score += 1;
+            ScoreCount.textContent = `${Score}`;
             addColor();
             index = 0;
         }
     }
- }
+}
 
- function playSecuence() {
-    for (i of colorsSecuence) {
-        if (colorSecuence[i] == 1){
-            playYellow();
-        } else if (colorSecuence[i] == 2) {
-            playRed();
-        } else if (colorSecuence[i] == 3) {
-            playBlue();
-        } else {
-            playGreen();
+function playSequence() {
+    let i = 0;
+    const interval = setInterval(() => {
+        if (i >= colorsSequence.length) {
+            clearInterval(interval);
+            return;
         }
-    }
- }
+        const color = colorsSequence[i];
+        switch (color) {
+            case 1:
+                playRed();
+                break;
+            case 2:
+                playGreen();
+                break;
+            case 3:
+                playBlue();
+                break;
+            case 4:
+                playYellow();
+                break;
+        }
+        i++;
+    }, 1000);
+}
 
- export function startGame() {
-    colorSecuence = [];
+function startGame() {
+    const mainMenu = document.getElementById("main-menu");
+    const gameSection = document.getElementById("game-section");
+    if (mainMenu && gameSection) {
+        mainMenu.classList.add("hidden");
+        gameSection.classList.remove("hidden");
+    }
+    colorsSequence = [];
+    userSequence = [];
+    index = 0;
+    round = 0;
+    Score = 0;
+    ScoreCount.textContent = "0";
     addColor();
- }
+}
+
+// Function to show game over screen
+function showGameOver() {
+    const gameOverScreen = document.getElementById("game-over");
+    const finalScore = document.getElementById("final-score");
+    const gameSection = document.getElementById("game-section");
+    if (gameOverScreen && finalScore && gameSection) {
+        finalScore.textContent = Score;
+        gameOverScreen.classList.remove("hidden");
+        gameSection.classList.add("hidden");
+    }
+}
+
+// Function to restart the game
+function restartGame() {
+    const gameOverScreen = document.getElementById("game-over");
+    const gameSection = document.getElementById("game-section");
+    if (gameOverScreen && gameSection) {
+        gameOverScreen.classList.add("hidden");
+        gameSection.classList.remove("hidden");
+    }
+    startGame();
+}
+
+// Start the game when the start button is clicked
+const startButton = document.getElementById("startButton");
+if (startButton) {
+    startButton.addEventListener("click", startGame);
+}
+
+// Restart the game when the retry button is clicked
+const retryButton = document.getElementById("retry-btn");
+if (retryButton) {
+    retryButton.addEventListener("click", restartGame);
+}
+
+// Restart the game when the restart button is clicked
+const restartButton = document.getElementById("restart-btn");
+if (restartButton) {
+    restartButton.addEventListener("click", restartGame);
+}
