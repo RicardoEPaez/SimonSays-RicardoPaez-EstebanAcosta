@@ -126,9 +126,9 @@ body {
     right: 1em;
 }
 
-#green:hover {
+/*#green:hover {
     background-color: #8dfe84;
-}
+}*/
 
 
 #red{
@@ -137,9 +137,9 @@ body {
     bottom: 1em;
     left: 1em;
 }
-#red:hover {
+/*#red:hover {
     background-color: #ff7b7b;
-}
+}*/
 
 #blue {
     background-color: #2a3fee;
@@ -148,9 +148,9 @@ body {
     right: 1em;
 }
 
-#blue:hover {
+/*#blue:hover {
     background-color: #8ea2fc;
-}
+}*/
 
 #yellow {
     background-color: #f6f02e;
@@ -159,9 +159,9 @@ body {
     left: 1em;
 }
 
-#yellow:hover {
+/*#yellow:hover {
     background-color: #faffb1;
-}
+}*/
 
 .simon_container:before {
     position: absolute;

@@ -64,28 +64,28 @@ function playBlue() {
 // Color buttons pressed functions
 if (Byellow) {
     Byellow.addEventListener("click", () => {
-        yellowAudio.play();
+        playYellow();
         isColor(4);
     });
 }
 
 if (Bred) {
     Bred.addEventListener("click", () => {
-        redAudio.play();
+        playRed();
         isColor(1);
     });
 }
 
 if (Bblue) {
     Bblue.addEventListener("click", () => {
-        blueAudio.play();
+        playBlue();
         isColor(3);
     });
 }
 
 if (Bgreen) {
     Bgreen.addEventListener("click", () => {
-        greenAudio.play();
+        playGreen();
         isColor(2);
     });
 }
