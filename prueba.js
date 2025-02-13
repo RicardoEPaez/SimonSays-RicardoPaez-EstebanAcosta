@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const mainMenuSection = document.getElementById('main-menu');
     const gameSection = document.getElementById('game-section');
