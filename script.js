@@ -1,6 +1,7 @@
 // counter reference
 const ScoreCount = document.getElementById("count");
 let Score = 0;
+let playerName = "";
 
 //reference to each color button and color buttons class
 const Byellow = document.getElementById("yellow");
@@ -175,6 +176,30 @@ function startGame() {
     addColor();
 }
 
+// Function to save the highest score of the player
+function saveHighScore(playerName, score) {
+    let highScores = JSON.parse(localStorage.getItem('highScores')) || {};
+    if (!highScores[playerName] || score > highScores[playerName]) {
+        highScores[playerName] = score;
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+    }
+}
+
+// Function to get the high scores and display them
+function displayHighScores() {
+    let highScores = JSON.parse(localStorage.getItem('highScores')) || {};
+    let highScoresArray = Object.entries(highScores).map(([player, score]) => ({ player, score }));
+    highScoresArray.sort((a, b) => b.score - a.score);
+
+    const highScoresTable = document.getElementById('highscores').querySelector('tbody');
+    if (highScoresTable) {
+        highScoresTable.innerHTML = '';
+        highScoresArray.forEach(({ player, score }) => {
+            highScoresTable.innerHTML += `<tr><td>${player}</td><td>${score}</td></tr>`;
+        });
+    }
+}
+
 // Function to show game over screen
 function showGameOver() {
     const gameOverScreen = document.getElementById("game-over");
@@ -185,6 +210,12 @@ function showGameOver() {
         finalScore.textContent = `${Score}`;
         gameOverScreen.classList.remove("hidden");
         gameSection.classList.add("hidden");
+
+        // Save the high score
+        saveHighScore(playerName, Score);
+
+        // Display the high scores
+        displayHighScores();
     }
 }
 
@@ -197,6 +228,17 @@ function restartGame() {
         gameSection.classList.remove("hidden");
     }
     startGame();
+}
+
+// Handle player form submission
+const playerForm = document.getElementById("player-form");
+if (playerForm) {
+    playerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        playerName = document.getElementById("player-name").value;
+        document.getElementById("current-player").textContent = playerName;
+        startGame();
+    });
 }
 
 // Start the game when the start button is clicked
@@ -216,3 +258,6 @@ const restartButton = document.getElementById("restart-btn");
 if (restartButton) {
     restartButton.addEventListener("click", restartGame);
 }
+
+// Display high scores on page load
+document.addEventListener("DOMContentLoaded", displayHighScores);

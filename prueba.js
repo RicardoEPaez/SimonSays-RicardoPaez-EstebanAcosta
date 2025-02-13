@@ -1,4 +1,16 @@
 
+function resetGameDisplay() {
+    const scoreCount = document.querySelectorAll("count");
+    if (scoreCount) {
+        scoreCount.textContent = "0";
+    }    
+    
+    const buttons = document.querySelectorAll(".simon");
+    buttons.forEach(button => {
+        button.style.backgroundColor = "";
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const mainMenuSection = document.getElementById('main-menu');
     const gameSection = document.getElementById('game-section');
