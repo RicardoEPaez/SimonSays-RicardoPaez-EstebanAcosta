@@ -93,7 +93,7 @@ body {
 #highscores th, #highscores td {
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 #highscores th {
@@ -126,20 +126,12 @@ body {
     right: 1em;
 }
 
-/*#green:hover {
-    background-color: #8dfe84;
-}*/
-
-
 #red{
     background-color: #d93131;
     border-radius: 0 0 0 100%;
     bottom: 1em;
     left: 1em;
 }
-/*#red:hover {
-    background-color: #ff7b7b;
-}*/
 
 #blue {
     background-color: #2a3fee;
@@ -148,9 +140,6 @@ body {
     right: 1em;
 }
 
-/*#blue:hover {
-    background-color: #8ea2fc;
-}*/
 
 #yellow {
     background-color: #f6f02e;
@@ -158,10 +147,6 @@ body {
     top: 1em;
     left: 1em;
 }
-
-/*#yellow:hover {
-    background-color: #faffb1;
-}*/
 
 .simon_container:before {
     position: absolute;

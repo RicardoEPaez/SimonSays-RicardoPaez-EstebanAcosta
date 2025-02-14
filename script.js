@@ -141,29 +141,31 @@ function isColor(answer) {
 function playSequence() {
     let i = 0;
     Bdisable();
-    const interval = setInterval(() => {
-        if (i >= colorsSequence.length) {
-            clearInterval(interval);
-            return;
-        }
-        const color = colorsSequence[i];
-        switch (color) {
-            case 1:
-                playRed();
-                break;
-            case 2:
-                playGreen();
-                break;
-            case 3:
-                playBlue();
-                break;
-            case 4:
-                playYellow();
-                break;
-        }
-        i++;
-    }, 1000);
-    Benable();
+    setTimeout(() => { 
+        const interval = setInterval(() => {
+            if (i >= colorsSequence.length) {
+                clearInterval(interval);
+                Benable();
+                return;
+            }
+            const color = colorsSequence[i];
+            switch (color) {
+                case 1:
+                    playRed();
+                    break;
+                case 2:
+                    playGreen();
+                    break;
+                case 3:
+                    playBlue();
+                    break;
+                case 4:
+                    playYellow();
+                    break;
+            }
+            i++;
+        }, 1000);
+    }, 200); 
 }
 
 function startGame() {
