@@ -1,6 +1,8 @@
 // counter reference
-const ScoreCount = document.getElementById("count");
+const ScoreCount = document.getElementById('count');
+const bestScore = document.getElementById('best-score');
 let Score = 0;
+let maxUScore = 0;
 let playerName = "";
 
 //reference to each color button and color buttons class
@@ -118,6 +120,10 @@ function addColor() {
 
 function isColor(answer) {
     if (answer != colorsSequence[index]) {
+        if (Score >= maxUScore){
+            maxUScore = Score;
+            bestScore.textContent = `${maxUScore}`;
+        }
         showGameOver();
         Score = 0;
         ScoreCount.textContent = "0";
