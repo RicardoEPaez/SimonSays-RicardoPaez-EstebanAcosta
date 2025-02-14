@@ -58,15 +58,16 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff; 
+    background-color: #e40000; 
     color: #fff;
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 #player-form button[type="submit"]:hover {
-    background-color: #0056b3; 
+    background-color: #fb0f0f; 
 }
 
 .scores {
