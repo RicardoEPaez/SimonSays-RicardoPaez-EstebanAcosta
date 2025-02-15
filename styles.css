@@ -11,6 +11,7 @@ body {
     justify-content: center; 
     align-items: center;
     min-height: 100vh; 
+    flex-direction: column;
 }
 
 body h2{
@@ -22,12 +23,15 @@ body h2{
     font-size:3em ;
 }
 
-.container {     
+.container {  
+    display: flex;   
     flex-direction: column; 
     align-items: center;    
     padding: 70px;        
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;    
+    border-radius: 10px;
+    max-width: 100%;
+    box-sizing: border-box;    
 }
 
 #main-menu {
@@ -281,6 +285,7 @@ body h2{
     .simon_container {
         height: 25em;
         width: 25em;
+        margin: 0 auto;
     }
     .simon {
         height: 11em;
