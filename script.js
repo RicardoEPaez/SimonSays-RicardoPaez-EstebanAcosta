@@ -247,6 +247,36 @@ function restartGame() {
     startGame();
 }
 
+// Function to start the game
+function startGame() {
+    const mainMenu = document.getElementById("main-menu");
+    const gameSection = document.getElementById("game-section");
+    if (mainMenu && gameSection) {
+        mainMenu.classList.add("hidden");
+        gameSection.classList.remove("hidden");
+    }
+    colorsSequence = [];
+    userSequence = [];
+    index = 0;
+    round = 0;
+    Score = 0;
+    ScoreCount.textContent = "0";
+    gameStatus.textContent = "Observa"; // Actualiza el mensaje de estado
+    gameStatus.classList.add("observe");
+
+    // Retrieve and display the player's best score
+    let highScores = JSON.parse(localStorage.getItem('highScores')) || {};
+    if (highScores[playerName]) {
+        maxUScore = highScores[playerName];
+        bestScore.textContent = `${maxUScore}`;
+    } else {
+        maxUScore = 0;
+        bestScore.textContent = "0";
+    }
+
+    addColor();
+}
+
 // Handle player form submission
 const playerForm = document.getElementById("player-form");
 if (playerForm) {
