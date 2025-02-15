@@ -279,15 +279,15 @@ body h2{
         font-size: 0.9em;
     }
     .simon_container {
-        height: 20em;
-        width: 20em;
+        height: 25em;
+        width: 25em;
     }
     .simon {
-        height: 9em;
-        width: 9em;
+        height: 11em;
+        width: 11em;
     }
     #count {
-        font-size: 2em;
+        font-size: 2.5em;
     }
 }
 
