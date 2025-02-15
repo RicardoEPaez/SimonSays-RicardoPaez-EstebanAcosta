@@ -283,13 +283,14 @@ body h2{
         font-size: 0.9em;
     }
     .simon_container {
-        height: 25em;
-        width: 25em;
+        height: 80vw;
+        width: 80vw;
         margin: 0 auto;
+        overflow: auto;
     }
     .simon {
-        height: 11em;
-        width: 11em;
+        height: 35vw;
+        width: 35vw;
     }
     #count {
         font-size: 2.5em;
