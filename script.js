@@ -1,6 +1,7 @@
 // counter reference
 const ScoreCount = document.getElementById('count');
 const bestScore = document.getElementById('best-score');
+const gameStatus = document.getElementById('game-status');
 let Score = 0;
 let maxUScore = 0;
 let playerName = "";
@@ -141,11 +142,17 @@ function isColor(answer) {
 function playSequence() {
     let i = 0;
     Bdisable();
+    gameStatus.textContent = "Observa"; // Actualiza el mensaje de estado
+    gameStatus.classList.remove("play");
+    gameStatus.classList.add("observe");
     setTimeout(() => { 
         const interval = setInterval(() => {
             if (i >= colorsSequence.length) {
                 clearInterval(interval);
                 Benable();
+                gameStatus.textContent = "Juega"; // Actualiza el mensaje de estado
+                gameStatus.classList.remove("observe");
+                gameStatus.classList.add("play");
                 return;
             }
             const color = colorsSequence[i];
@@ -181,6 +188,8 @@ function startGame() {
     round = 0;
     Score = 0;
     ScoreCount.textContent = "0";
+    gameStatus.textContent = "Observa"; // Actualiza el mensaje de estado
+    gameStatus.classList.add("observe");
     addColor();
 }
 

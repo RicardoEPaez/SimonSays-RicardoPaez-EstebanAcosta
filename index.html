@@ -29,20 +29,23 @@
         </section>
     <!-- Juego -->
     <section id="game-section" class="hidden">
+        <h2>SIMON SAYS</h2>
+        <div class="player-info">
+            <p>JUGADOR: <span id="current-player">Anónimo</span></p>
+            <p>TU RÉCORD: <span id="best-score">0</span></p>
+        </div>
+
+        <div id="game-status" class="game-status">Observa</div>
+        
         <div class="simon_container">
             <div class="simon verde" id="green"></div>  
             <div class="simon rojo" id="red"></div>    
             <div class="simon amarillo" id="yellow"></div>
             <div class="simon azul" id="blue"></div>   
             <div id="count">0</div>
-        </div>
-
+        </div>       
         <!-- Panel de Control -->
         <div class="game-controls">
-            <div class="player-info">
-                <p>Jugador: <span id="current-player">Anónimo</span></p>
-                <p>Récord: <span id="best-score">0</span></p>
-            </div>
             <button id="restart-btn">Reiniciar</button>
             <button id="menu-btn">Salir</button>
         </div>
